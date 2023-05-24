@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+body{
+
+background-image: url('images/t2.jpg');
+background-size: cover;
+background-position: center center;
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-blend-mode:darken;
+opacity: 0.98;
+height: 100vh;
+margin: 0;
+display: flex;
+justify-content: right;
+align-items: center;
+font-family: sans-serif;
+padding-right: 50px;
+
+}
+.p1{
+    font-family: 'sans-serif';
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 8px;
+    font-size: 15px;
+}
+.container{
+    background-color: white;
+    border-radius: 7px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    width: 437px;
+    max-width: 100%;
+}
+.header{
+    text-align: center;
+    padding: 20px;
+    background-color: #f39d12c5;
+}
+.header h2{
+    margin: 0;
+    font-size: 30px;
+}
+.main-form{
+    padding: 30px 40px;
+}
+.form{
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+    position: relative;
+}
+.form input{
+    border: 2px solid #f0f0f0;
+    border-radius: 4px;
+    font-family: inherit;
+    width: 100%;
+    padding: 12px;
+    display: block;
+    font-size: 14px;
+}
+.form i{
+    position: absolute;
+    top: 32px;
+    right: 10px;
+    visibility: hidden;
+}
+.form small{
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    visibility: hidden;
+}
+button{
+    width: 100%;
+    font-family: inherit;
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 7px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    color: white;
+    background-color: #f39d12ce;
+    outline: none;
+}
+button:hover{
+    background-color:rgba(0, 0, 0, 0.87);
+    color: white;
+}
+
+    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>form validation</title>
+    
+</head>
+<body>
+    
+    <div class="container">
+        <div class="header">
+            <h2>Login</h2>
+        
+            <div><i style='font-size:24px' class='fas'>&#xf2bd;</i></div>
+        </div>
+            <form action="./home.html" class="main-form" onsubmit="return myfun()">
+                
+                <div class="form">
+                    <label for="">Email</label>
+                    <input type="email" placeholder="Enter your valid email" id="email" autocomplete="off">
+                    <i class="fas sucess">&#xf058;</i>
+                    <i class="fas error">&#xf06a;</i>
+                    <small class="message">error message</small>
+                </div>
+                <div class="form">
+                    <label for="">Password</label>
+                    <input type="password" placeholder="Enter your password" id="password1" autocomplete="off">
+                    <i class="fas sucess">&#xf058;</i>
+                    <i class="fas error">&#xf06a;</i>
+                    <small class="message">error message</small>
+                </div>
+              <a href="./form.html" > <p class="p1">Don't have an account? create an account</p></a>
+               
+                <button>Login</button>
+            </form>
+        
+    </div>
+    <script >
+        function myfun(){
+   
+    const email=document.getElementById('email');
+    const password1=document.getElementById('password1');
+   
+    const message=document.getElementsByClassName('message');
+    const icon=document.querySelector('i');
+    const sucess=document.getElementsByClassName('sucess');
+    const error=document.getElementsByClassName('error');
+
+// submit sucess variable//
+
+let e=0;
+let p1=0;
+
+
+    
+
+// email validation//
+if(email.value==""){
+    email.style.borderColor='red';
+        message[0].style.visibility='visible';
+        message[0].style.color='red';
+        message[0].innerText="Email cannot be blank";
+        error[0].style.visibility='visible';
+        error[0].style.color='red';
+        e=0;
+}
+else if(email.value.indexOf('@')<3||email.value.lastIndexOf('.')>=email.value.length-2){
+    email.style.borderColor='red';
+        message[0].style.visibility='visible';
+        message[0].style.color='red';
+        message[0].innerText="Invalid email";
+        error[0].style.visibility='visible';
+        error[0].style.color='red';
+        e=0;
+}
+else{
+    email.style.borderColor='green';
+    error[0].style.visibility='hidden';
+    message[0].style.visibility='hidden';
+    sucess[0].style.visibility='visible';
+    sucess[0].style.color='green';
+    e=1;
+
+}
+
+//validation of password//
+var numbers=/[0-9]/g;
+if(password1.value==""){
+    password1.style.borderColor='red';
+        message[1].style.visibility='visible';
+        message[1].style.color='red';
+        message[1].innerText="Password cannot be blank";
+        error[1].style.visibility='visible';
+        error[1].style.color='red';
+        p1=0;
+}
+else if(password1.value.length<9){
+    password1.style.borderColor='red';
+        message[1].style.visibility='visible';
+        message[1].style.color='red';
+        message[1].innerText="Password must be minimum 8 character";
+        error[1].style.visibility='visible';
+        error[1].style.color='red';
+        p1=0;
+}
+else if(!(password1.value.match(numbers))){
+    password1.style.borderColor='red';
+        message[1].style.visibility='visible';
+        message[1].style.color='red';
+        message[1].innerText="Password have atleast a number";
+        error[1].style.visibility='visible';
+        error[1].style.color='red';
+        p1=0;
+}
+else{
+    password1.style.borderColor='green';
+    error[1].style.visibility='hidden';
+    message[1].style.visibility='hidden';
+    sucess[1].style.visibility='visible';
+    sucess[1].style.color='green';
+    p1=1;
+
+}
+
+//return condition//
+if(e==1&&p1==1){
+    return true;
+}
+else
+
+return false;
+
+
+
+}
+    </script>
+</body>
+</html>
